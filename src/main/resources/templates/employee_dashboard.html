@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+
+<title>Employee Dashboard</title>
+</head>
+<body  >
+	<div class="container text-center">
+		<h1 th:text="'Dashboard - '+${name}"></h1>
+		
+    <div class="row">
+        <div class="span4"><h4><span><a href="#"  th:onclick="window.open('/oof/[[${employee.empid}]]','popUpWindow','height=500,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');">Apply Out of Office request?</a>&nbsp;|&nbsp;<a href="#" th:onclick="window.open('/oof/requests/[[${employee.empid}]]','popUpWindow','height=500,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');">My Request Lists </a></span></h4></div>
+        <div class="span4" th:style="${employee.admin == 'No' ? 'display:block' : 'display:none'}"><h4><span>&nbsp;|&nbsp;<a href="#" th:onclick="window.open('/adminAccessRequest/[[${employee.empid}]]','popUpWindow','height=300,width=600,left=400,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');">Admin access Request?</a></span></h4></div>
+        <div class="span4" th:style="${employee.admin == 'Yes' ? 'display:block' : 'display:none'}" ><h4><span>&nbsp;|&nbsp;<a th:href="@{'/employeesList/'+${employee.empid}}">Employees List</a>&nbsp;|&nbsp;<a th:href="@{'/oof/employeesList/'+${employee.empid}}">Employees Request List</a></span></h4></div>
+       
+
+    </div>
+</div>
+	
+
+<br><br><br>
+ <table class="table table-bordered table-striped">
+ 		 <thead>
+ 		 <tr>
+			  <td>First Name</td>
+			  <td>Last Name</td>
+			  <td>E-mail</td>
+			  <td>Date of Birth</td>
+			  <td>Department</td>
+			  <td>Designation</td>
+			  <td>Status</td>
+			  <td>Admin?</td>
+			  <td>Created Date</td>
+			  <td>Updated Date</td>
+			  <td>Edit</td>
+			  
+			  
+ 		</tr>
+ 		</thead>
+ 		<tbody>
+ 		<tr th:each="e : ${employee}"> 			 
+			  <td th:text="${e.firstname}">First Name</td>
+			  <td th:text="${e.lastname}">Last Name</td>
+			  <td th:text="${e.email}">E-mail</td>
+			  <td th:text="${{e.dob}}">Date of Birth</td>
+			  <td th:text="${e.department}">Department</td>
+			  <td th:text="${e.designation}">Designation</td>
+			  <td th:text="${e.status}">Status</td>
+			  <td th:text="${e.admin}">Admin?</td>
+			  <td th:text="${e.createddate}">Created Date</td>
+			  <td th:text="${e.updateddate}">Updated Date</td>
+			  <td><a href="#"  class="btn btn-primary" role="button" th:onclick="window.open('/[[${e.empid}]]','popUpWindow','height=500,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');">Edit</a></td>
+ 		</tr>
+ 		
+ 		
+ 		</tbody>
+ 		
+ 		</table>
+
+
+ 
+ 
+</body>
+</html>

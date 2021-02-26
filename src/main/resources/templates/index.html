@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel=" stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Login Form</title>
+
+</head>
+<body>
+	<div class="container text-center">
+		<div class="form-group">
+			<h1>Login</h1>
+		</div>
+		<form th:action="@{/dashboard}"  th:object="${employee}" method="get"
+			style="max-width: 600px; margin: 0 auto;">
+			<div>
+			 
+			<div class="form-group row">
+					<label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+					<div class="col-sm-10">
+						<input type="email" th:field="*{email}" class="form-control"  placeholder="____@_.com" 
+							id="inputEmail3">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" th:field="*{password}" class="form-control" placeholder="********"
+							id="inputPassword3"  required minlength="8"
+							maxlength="25">
+					</div>
+				</div>
+				<div>
+					   <button type="submit" class="btn btn-primary">Login</button>
+				</div>
+				<div>
+					<h3>
+						Don't have an account? <a th:href="@{/register}">Register</a>
+					</h3>
+				</div>
+
+
+
+			</div>
+		</form>
+	 
+	 
+		
+	</div>
+</body>
+</html>

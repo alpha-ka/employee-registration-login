@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel=" stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Requests Lists</title>
+
+</head>
+<body>
+	<div class="container text-center">
+		<div class="form-group">
+			<h1>Out of Office - Requests Lists</h1>
+		</div>
+ 		 
+      <table class="table table-bordered table-striped">
+ 		 <thead>
+ 		 <tr>
+			  <td>Category</td>
+			  <td>Start Date</td>
+			  <td>End Date</td>
+			  <td>No of Days</td>
+			  <td>Reason</td>
+			  <td>Status</td>
+ 		</tr>
+ 		</thead>
+ 		<tbody>
+ 		<tr th:each="oof : ${oofList}"> 			 
+			  <td th:text="${oof.category}">Category</td>
+			  <!-- <td th:text="${#dates.format(oof.startdate, 'dd-MMM-yyyy')}">Start Date</td> -->
+			  <td th:text="${oof.startdate}">Start Date</td>
+			  <td th:text="${oof.enddate}">End Date</td>
+			  <td th:text="${oof.days}">No of Days</td>
+			  <td th:text="${oof.reason}">Reason</td>
+			  <td th:text="${oof.status}">Status</td>
+ 		</tr>
+ 		
+ 		
+ 		</tbody>
+ 		
+ 		</table>
+	  <!-- 
+			<h4>
+				<a href="#" onclick="history.back()">Go Back</a> | <a th:href="@{/}">Home</a>
+		</h4>
+		   -->
+	</div>
+</body>
+</html>

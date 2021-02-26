@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel=" stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Update Employee</title>
+
+</head>
+<body onload="setValues()">
+	 
+	<div class="container text-center">
+		<div>
+			<h1>Update Profile</h1>
+		</div>
+						<form th:action="@{'/admin/update/'+${empid}}" th:object="${employee}" th:method="Post"
+						style="max-width: 700px; margin: 40px auto;  ">
+
+					 
+					<input type="hidden" th:field="*{empid}" />
+					
+					
+						<div class="form-group row ">
+							<label class="col-sm-2 col-form-label">First Name</label>
+
+							<div class="col-sm-10" style="max-width: 350px">
+								<input type="text"   th:field="*{firstname}"  
+									class="form-control" placeholder="First name" required
+									minlength="2" maxlength="20" />
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Last Name</label>
+							<div class="col-sm-10" style="max-width: 350px">
+								<input type="text" th:field="*{lastname}" 
+									class="form-control" placeholder="Last name" required
+									minlength="2" maxlength="20" />
+							</div>
+						</div>
+
+			 	<div class="form-group row">
+				<label  class="col-sm-2 col-form-label">E-mail</label>
+					<div class="col-sm-10" style ="max-width: 350px"> <input  type="email" id="email"
+					th:field="*{email}"  class="form-control"  />
+					</div>
+				</div>
+ 				 
+
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Date of Birth</label>
+							<div class="col-sm-10" style="max-width: 350px">
+								<input type="date" th:field="*{dob}"  
+									class="form-control"  required  />
+							</div>
+						</div>
+
+		
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Department</label>
+							<div class="col-sm-10" style="max-width: 350px">
+								<select th:field="*{department}" id="department"
+									class="form-control" required="required">
+								<option th:each="d : ${departmentlist}" th:value="${d}" th:text="${d}"></option>
+								
+								<!-- 
+								<option value=""></option>
+									<option value="Sales">Sales</option>
+									<option value="Marketing">Marketing</option>
+									<option value="Development">Development</option>
+									<option value="HR">HR</option>
+									<option value="Finance">Finance</option>
+								
+								
+								 -->
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Designation</label>
+							<div class="col-sm-10" style="max-width: 350px">
+								<select th:field="*{designation}" id="designation"
+									class="form-control" required="required">
+									<option th:each="d : ${designationlist}" th:value="${d}" th:text="${d}"></option>
+								<!-- 
+									<option value=""></option>
+									<option value="Software Engineer">Software Engineer</option>
+									<option value="Junior Engineer">Junior Engineer</option>
+									<option value="QA Engineer">QA Engineer</option>
+									<option value="JAVA Developer">JAVA Developer</option>
+									<option value="SQL Developer">SQL Developer</option>
+								
+								 -->
+								
+								
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Status</label>
+							<div class="col-sm-10" style="max-width: 350px">
+								<select th:field="*{status}" id="status"
+									class="form-control" required="required">
+									<option value="Active">Active</option>
+									<option value="Inactive">Inactive</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Admin</label>
+							<div class="col-sm-10" style="max-width: 350px">
+								<select th:field="*{admin}" id="admin"
+									class="form-control" required="required">
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+						</div>
+
+						<div>
+							<button type="submit" class="btn btn-primary">Update</button>
+						</div>
+					</form>
+ 		
+ 		 
+	 
+	 
+	 </div>
+	 
+	 <script>
+
+
+function setValues() {
+	document.getElementById("email").disabled = true;
+  document.getElementById("department").value = "[[${employee.department}]]";
+  document.getElementById("designation").value = "[[${employee.designation}]]";
+}
+
+ 
+</script>
+	 
+</body>
+</html>

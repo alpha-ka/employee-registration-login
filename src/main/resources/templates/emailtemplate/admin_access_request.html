@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymwleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ 
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Notification</title>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+ 
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+        <tr>
+            <td align="center" bgcolor="#f6f6f6" style="padding: 40px 0 30px 0;">
+                <img src="cid:logo.png" alt="https://www.alpha.com" style="display: block;" />
+            </td>
+        </tr>
+        <tr>
+            <td  style="padding: 40px 0px 40px 0px; border-width: 0;">
+                <p>  <span th:text="${name}"></span> requested for admin access privilege. Please click below button to grant the access.</p>
+                <span th:value="${approvebutton}"></span>
+                <a th:href="@{'http://localhost:8080/adminAccess/'+${empid}}"  class="btn btn-primary"  role="button">Approve</a>
+    
+          
+            </td>
+        </tr>
+        <tr>
+            <td   bgcolor="#f9f9f9" valign="top" style="padding:0; background-color:#f9f9f9; ">
+                
+                  <p>
+                    Regards, <br /> <span th:text="${signature}"></span>
+                    <br th:text="${location}">
+                </p>
+            </td>
+        </tr>
+    </table>
+
+ 
+
+</body>
+</html>

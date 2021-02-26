@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel=" stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Employees List</title>
+
+</head>
+<body>
+	<div class="container text-center">
+		<div class="form-group">
+			<h1>Employees List</h1>
+		</div>
+ 		 
+      <table class="table table-bordered table-striped">
+ 		 <thead>
+ 		 <tr>
+			  <td>First Name</td>
+			  <td>Last Name</td>
+			  <td>E-mail</td>
+			  <td>Date of Birth</td>
+			  <td>Department</td>
+			  <td>Designation</td>
+			  <td>Status</td>
+			  <td>Admin?</td>
+			  <td>Created Date</td>
+			  <td>Updated Date</td>
+			  <td>Edit</td>
+			  
+ 		</tr>
+ 		</thead>
+ 		<tbody>
+ 		<tr th:each="e : ${employeesList}"> 			 
+			  <td th:text="${e.firstname}">First Name</td>
+			  <td th:text="${e.lastname}">Last Name</td>
+			  <td th:text="${e.email}">E-mail</td>
+			  <td th:text="${e.dob}" >Date of Birth</td>
+			  <td th:text="${e.department}">Department</td>
+			  <td th:text="${e.designation}">Designation</td>
+			  <td th:text="${e.status}">Status</td>
+			  <td th:text="${e.admin}">Admin?</td>
+			  <td th:text="${e.createddate}">Created Date</td>
+			  <td th:text="${e.updateddate}">Updated Date</td>
+			  <td><a href="#"  class="btn btn-primary" role="button" th:onclick="window.open('/admin/[[${e.empid}]]','popUpWindow','height=500,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');">Edit</a></td>
+ 		</tr>
+ 		
+ 		</tbody>
+ 		
+ 		</table>
+	  
+			<h4>
+				<a href="#" onclick="history.back()">Home</a>
+		</h4>
+		 
+	</div>
+</body>
+</html>
