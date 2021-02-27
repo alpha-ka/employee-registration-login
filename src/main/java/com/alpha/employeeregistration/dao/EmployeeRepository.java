@@ -29,10 +29,10 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 	public Employee findByAdminEmailPassword(String email,String password,String admin);
 	
 //	@Query("From Employee Where emp_id!=?1")
-//	public List<Employee> findAllforAdmin(Long empid);
+//	public List<Employee> findAllforAdmin(long empid);
 	
 	@Query(value="SELECT * FROM Employees Where emp_id!=?1", nativeQuery = true)
-	public List<Employee> findAllforAdmin(Long empid);
+	public List<Employee> findAllforAdmin(long empid);
 	
 	@Query("From Employee WHERE status='Active'")
 	public List<Employee> findAllActiveEmp();

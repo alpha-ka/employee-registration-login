@@ -40,12 +40,11 @@ public class EmpController {
 
 	private Logger logger = LoggerFactory.getLogger(EmpController.class);
 	@Autowired
+	
 	private EmployeeRepository empRepo;
 	
 	
-	//@Value("${server.port}")
-	//private String port;
-	//String url = "http://localhost:"+port;
+ 
 	
 	String baseUrl;
 			
@@ -72,7 +71,7 @@ public class EmpController {
 
 	List<String> categorylist = Arrays.asList("", "Sick Leave", "Casual Leave", "Marriage Leave", "Maternity Leave");
 
-	@GetMapping("/")
+	@RequestMapping("/")
 	public String homepage( Model model) {
 		baseUrl=ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 	System.out.println(baseUrl);
@@ -82,7 +81,7 @@ public class EmpController {
 
 	}
 
-	@GetMapping("/register")
+	@RequestMapping("/register")
 	public String registor(Model model) {
 		model.addAttribute("employee", new Employee());
 
