@@ -25,8 +25,10 @@ public class Employee {
 
 	
 	@Id
-	@SequenceGenerator(name="emp_seq" , initialValue = 1000  )
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "emp_seq")
+//	@SequenceGenerator(name="emp_seq" , initialValue = 1000  )
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "emp_seq")
+	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="emp_id")
 	private long empid;
 	
