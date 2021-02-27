@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.alpha.employeeregistration.dao.EmployeeRepository;
@@ -171,7 +172,7 @@ public class EmpController {
 	@GetMapping("/{empid}")
 	public String updateForm(@PathVariable Long empid, Model model) {
 
-		Employee employee = empRepo.findById(empid).orElseThrow();
+		Employee employee = empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 	 
 		model.addAttribute("employee", employee);
 		
@@ -184,7 +185,7 @@ public class EmpController {
 	@GetMapping("/admin/{empid}")
 	public String adminUpdateForm(@PathVariable Long empid, Model model) {
 
-		Employee employee = empRepo.findById(empid).orElseThrow();
+		Employee employee = empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 
 		model.addAttribute("employee", employee);
 		model.addAttribute("designationlist", designationlist);
@@ -197,7 +198,7 @@ public class EmpController {
 	@PostMapping("/update/{empid}")
 	public String updateEmployee(Employee employee,@PathVariable long empid, Model model) {
 		
-		Employee employeeexists= empRepo.findById(empid).orElseThrow();
+		Employee employeeexists= empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 		 
 		
 		
@@ -236,7 +237,7 @@ public class EmpController {
 	@PostMapping("/admin/update/{empid}")
 	public String updateEmployeeByAdmin(Employee employee,@PathVariable long empid, Model model) {
 		
-		Employee employeeexists= empRepo.findById(empid).orElseThrow();
+		Employee employeeexists= empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 		 
 		
 		employeeexists.setFirstname(employee.getFirstname());
@@ -277,7 +278,7 @@ public class EmpController {
 
 	@GetMapping("/adminAccessRequest/{empid}")
 	public String adminAccessRequest(@PathVariable Long empid,Model model) {
-		Employee emp= empRepo.findById(empid).orElseThrow();
+		Employee emp= empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 		String to = company;
 		String subject = "Admin access request";
 		
@@ -312,7 +313,7 @@ public class EmpController {
 	
 	@GetMapping("/adminAccess/{empid}")
 	public String adminAccessGranted(@PathVariable Long empid,Model model) {
-		Employee emp= empRepo.findById(empid).orElseThrow();
+		Employee emp= empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 		
 		emp.setAdmin("Yes");
 		emp.setUpdateddate(new Date());
@@ -360,7 +361,7 @@ public class EmpController {
 	@GetMapping("/oof/{empid}")
 	public String oof(@PathVariable Long empid, Model model) {
 
-		Employee employee = empRepo.findById(empid).orElseThrow();
+		Employee employee = empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 
 		model.addAttribute("name", employee.getFirstname() + " " + employee.getLastname());
 		model.addAttribute("employee", employee);
@@ -374,7 +375,7 @@ public class EmpController {
 	@PostMapping("/oof/submit/{empid}")
 	public String insertOOF(@PathVariable Long empid, OutofOffice oof, Model model) throws ParseException {
 
-		Employee employee = empRepo.findById(empid).orElseThrow();
+		Employee employee = empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 
 		oof.setEmpid(empid);
 		oof.setCreatedby(employee.getFirstname() + " " + employee.getLastname());
@@ -432,7 +433,7 @@ public class EmpController {
 	@GetMapping("/oof/requests/{empid}")
 	public String oofRequestList(@PathVariable Long empid, Model model) {
 
-		Employee employee = empRepo.findById(empid).orElseThrow();
+		Employee employee = empRepo.findById(empid).orElseThrow(() -> new ResourceAccessException("Employee not found"));
 
 		List<OutofOffice> oofList = oofRepo.findByEmpID(empid);
 
@@ -456,7 +457,7 @@ public class EmpController {
 	@PutMapping("/oof/{id}")
 	public void updateOOF(@PathVariable Long id) {
 
-		OutofOffice oof = oofRepo.findById(id).orElseThrow();
+		OutofOffice oof = oofRepo.findById(id).orElseThrow(() -> new ResourceAccessException("Out of office not exists"));
 		oof.setStatus("Approved");
 		oof.setUpdateddate(new Date());
 
