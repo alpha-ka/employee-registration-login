@@ -30,7 +30,9 @@
             <td  style="padding: 40px 0px 40px 0px; border-width: 0;">
                 <p>  <span th:text="${name}"></span> requested for admin access privilege. Please click below button to grant the access.</p>
                 <span th:value="${approvebutton}"></span>
-                <a th:href="@{'http://localhost:8080/adminAccess/'+${empid}}"  class="btn btn-primary"  role="button">Approve</a>
+                <!-- <a th:href="@{'http://localhost:8081/adminAccess/'+${empid}}" --> 
+                 <a th:href="@{${url}+'/adminAccess/'+${empid}}"
+                 class="btn btn-primary"  role="button">Approve</a>
     
           
             </td>

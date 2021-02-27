@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.alpha.employeeregistration.dao.EmployeeRepository;
 import com.alpha.employeeregistration.dao.OOFRepository;
@@ -40,6 +41,13 @@ public class EmpController {
 	@Autowired
 	private EmployeeRepository empRepo;
 	
+	
+	//@Value("${server.port}")
+	//private String port;
+	//String url = "http://localhost:"+port;
+	
+	String baseUrl;
+			
 
 	@Autowired
 	private OOFRepository oofRepo;
@@ -65,7 +73,9 @@ public class EmpController {
 
 	@GetMapping("/")
 	public String homepage( Model model) {
-	
+		baseUrl=ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+	System.out.println(baseUrl);
+	System.out.println();
 		model.addAttribute("employee", new Employee());
 		return "index";
 
@@ -270,11 +280,14 @@ public class EmpController {
 		Employee emp= empRepo.findById(empid).orElseThrow();
 		String to = company;
 		String subject = "Admin access request";
+		
+		System.out.println(baseUrl);
+		System.out.println();
 
 		Map<String, Object> templatemodel = new HashMap<String, Object>();
 		templatemodel.put("name", emp.getFirstname() + " " + emp.getLastname());
 		templatemodel.put("empid", emp.getEmpid());
-
+		templatemodel.put("url",baseUrl);
 		templatemodel.put("signature", signature);
 		templatemodel.put("location", location);
 	 

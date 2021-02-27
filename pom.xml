@@ -52,6 +52,12 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+<scope>runtime</scope>
+</dependency>
+		
 			<!-- need for template-->
 		<dependency>
     <groupId>org.webjars</groupId>
