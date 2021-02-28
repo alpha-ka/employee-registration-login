@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="out_of_office")
+@Table(name="out_of_office", schema="myschema")
 public class OutofOffice {
 	
 	@Id
