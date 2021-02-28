@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name="employees")
+@Table(name="employees", schema="myschema")
 public class Employee {
 
 	
